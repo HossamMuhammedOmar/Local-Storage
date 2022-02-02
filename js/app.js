@@ -27,8 +27,11 @@ function addNewTask(event) {
   const remove = document.createElement("button");
   remove.innerHTML = "REMOVE";
 
-  //   REMOVE TASK
-  remove.addEventListener("click", (e) => removeList(e));
+  //   Remove Tasks
+  remove.addEventListener("click", removeTask);
+
+  //   Complete Tasks
+  complete.addEventListener("click", completeTask);
 
   newTask.classList.add("new-task");
   remove.classList.add("remove-task");
@@ -40,6 +43,10 @@ function addNewTask(event) {
   task.value = "";
 }
 
-function removeList(e) {
+function removeTask(e) {
   e.target.parentElement.remove();
+}
+
+function completeTask(e) {
+  e.target.parentElement.classList.toggle("finish-task");
 }
