@@ -19,9 +19,33 @@ header {
 
 h1 {
   font-size: 100px;
+  cursor: default;
   font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.555);
 }
 
+.d,
+.o,
+.t {
+  font-size: 120px;
+  display: inline-block;
+
+  transition: transform 0.5s;
+}
+
+.d:hover {
+  transform: scale(0.5);
+  color: orange;
+}
+
+.o:hover {
+  transform: scale(0.5);
+  color: hotpink;
+}
+.t:hover {
+  transform: scale(0.5);
+  color: orangered;
+}
 main {
   display: flex;
   flex-direction: column;
@@ -68,13 +92,14 @@ input {
 }
 
 .task-container {
-  min-width: 60vw;
+  min-width: 40vw;
   background-color: #ecf0f1;
   margin-bottom: 10px;
   font-size: 16px;
   display: flex;
   min-height: 40px;
   border-radius: 5px 20px 20px 5px;
+  transition: all 0.5s;
 }
 
 .new-task {
@@ -114,4 +139,10 @@ input {
 .finish-task {
   text-decoration: line-through;
   opacity: 0.5;
+}
+
+.remove-animation {
+  transform: rotate(-360deg);
+  opacity: 0;
+  pointer-events: none;
 }

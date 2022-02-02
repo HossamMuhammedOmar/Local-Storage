@@ -28,7 +28,10 @@ function addNewTask(event) {
   remove.innerHTML = "REMOVE";
 
   //   Remove Tasks
-  remove.addEventListener("click", removeTask);
+  remove.addEventListener("click", (e) => {
+    removeTask(e);
+    taskContainer.classList.add("remove-animation");
+  });
 
   //   Complete Tasks
   complete.addEventListener("click", completeTask);
@@ -44,7 +47,9 @@ function addNewTask(event) {
 }
 
 function removeTask(e) {
-  e.target.parentElement.remove();
+  setTimeout(() => {
+    e.target.parentElement.remove();
+  }, 500);
 }
 
 function completeTask(e) {
