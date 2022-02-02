@@ -1,2 +1,2 @@
 # Local Storage
-Local storage with javascript - Todo
+Local storage with javascript - 2DO
