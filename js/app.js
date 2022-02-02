@@ -28,7 +28,7 @@ function addNewTask(event) {
   remove.innerHTML = "REMOVE";
 
   //   REMOVE TASK
-  remove.addEventListener("click", () => removeList(todoList, taskContainer));
+  remove.addEventListener("click", (e) => removeList(e));
 
   newTask.classList.add("new-task");
   remove.classList.add("remove-task");
@@ -40,7 +40,6 @@ function addNewTask(event) {
   task.value = "";
 }
 
-function removeList(todoList, taskContainer) {
-  todoList.remove(taskContainer);
-  console.log("REMOVE");
+function removeList(e) {
+  e.target.parentElement.remove();
 }
