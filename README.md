@@ -1,2 +1,2 @@
-# Local-Storage
+# Local Storage
 Local storage with javascript - Todo
