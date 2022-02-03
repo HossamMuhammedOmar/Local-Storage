@@ -5,9 +5,9 @@ const todoList = document.querySelector(".todo-list");
 
 const filters = document.getElementsByTagName("select")[0];
 
+document.addEventListener("DOMContentLoaded", getTasks);
 addButton.addEventListener("click", addNewTask);
 filters.addEventListener("click", filterProcess);
-
 /*
  *
  *
@@ -30,6 +30,8 @@ function addNewTask(event) {
   const remove = document.createElement("button");
   remove.innerHTML = "REMOVE";
 
+  // SAVE TO THE LOCAL STORAGE
+  saveTasks(task.value);
   //   Remove Tasks
   remove.addEventListener("click", (e) => {
     removeTask(e);
@@ -50,6 +52,7 @@ function addNewTask(event) {
 }
 
 function removeTask(e) {
+  // deleteTasks(task.value);
   setTimeout(() => {
     e.target.parentElement.remove();
   }, 500);
@@ -73,5 +76,54 @@ function filterProcess(e) {
         ? (task.style.display = "none")
         : (task.style.display = "flex");
     }
+  });
+}
+
+// Save A LOCAL STORAGe
+function saveTasks(task) {
+  let todos; // todos or not
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  todos.push(task);
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+// Delete tasks from local storage
+function getTasks() {
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+
+  todos.forEach((task) => {
+    const taskContainer = document.createElement("div");
+    taskContainer.classList.add("task-container");
+    const newTask = document.createElement("li");
+    newTask.innerHTML = task;
+    const complete = document.createElement("button");
+    complete.innerHTML = "DONE";
+    const remove = document.createElement("button");
+    remove.innerHTML = "REMOVE";
+
+    remove.addEventListener("click", (e) => {
+      removeTask(e);
+      taskContainer.classList.add("remove-animation");
+    });
+
+    //   Complete Tasks
+    complete.addEventListener("click", completeTask);
+
+    newTask.classList.add("new-task");
+    remove.classList.add("remove-task");
+    complete.classList.add("complete-task");
+    taskContainer.appendChild(newTask);
+    taskContainer.appendChild(complete);
+    taskContainer.appendChild(remove);
+    todoList.appendChild(taskContainer);
   });
 }
