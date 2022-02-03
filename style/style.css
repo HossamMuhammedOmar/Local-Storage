@@ -138,6 +138,7 @@ input {
 
 .finish-task {
   text-decoration: line-through;
+  text-decoration-thickness: 1px;
   opacity: 0.5;
 }
 
@@ -145,4 +146,27 @@ input {
   transform: rotate(-360deg);
   opacity: 0;
   pointer-events: none;
+}
+
+/* Filter */
+.filter-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 5px;
+}
+
+select {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  background: white;
+  color: #3498db;
+  font-weight: 700;
+}
+
+option {
+  padding: 10px 15px;
+  color: #34495e;
 }

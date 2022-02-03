@@ -3,7 +3,10 @@ const task = document.querySelector(".todo-input");
 const addButton = document.querySelector(".todo-add-button");
 const todoList = document.querySelector(".todo-list");
 
+const filters = document.getElementsByTagName("select")[0];
+
 addButton.addEventListener("click", addNewTask);
+filters.addEventListener("click", filterProcess);
 
 /*
  *
@@ -54,4 +57,21 @@ function removeTask(e) {
 
 function completeTask(e) {
   e.target.parentElement.classList.toggle("finish-task");
+}
+
+function filterProcess(e) {
+  todoList.childNodes.forEach((task) => {
+    const target = e.target.value;
+    if (target === "all") {
+      task.style.display = "flex";
+    } else if (target === "completed") {
+      task.classList.contains("finish-task")
+        ? (task.style.display = "flex")
+        : (task.style.display = "none");
+    } else {
+      task.classList.contains("finish-task")
+        ? (task.style.display = "none")
+        : (task.style.display = "flex");
+    }
+  });
 }
